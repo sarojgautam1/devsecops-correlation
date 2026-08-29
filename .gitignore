@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# OWASP Benchmark clone (has its own git history, huge, can be re-cloned)
+data/benchmark/
+
+# Raw tool outputs (large, regenerable by re-running scripts)
+data/raw_sarif/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# SonarQube scanner working directory
+.scannerwork/
+
+# OS/editor junk
+.DS_Store
