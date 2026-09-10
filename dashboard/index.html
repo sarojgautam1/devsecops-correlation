@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevSecOps Correlation & ML Prioritizer Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Navigation Header -->
+  <header class="navbar">
+    <div class="brand">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">DevSecOps Fusion Engine</h1>
+        <span class="brand-subtitle">Cross-Tool SAST/SCA Correlation & ML Prioritization</span>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="badge-status">
+        <span class="status-dot"></span>
+        <span>OWASP Benchmark v1.2</span>
+      </div>
+
+      <button id="exportBtn" class="btn btn-outline" title="Export Current View Data">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        <span>Export Report</span>
+      </button>
+
+      <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span class="theme-icon moon-icon">🌙</span>
+        <span class="theme-icon sun-icon">☀️</span>
+        <span class="theme-label">Sea Blue Dark</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Collapsible & Interactive Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <h2 class="sidebar-heading">Navigation</h2>
+        <nav class="nav-menu">
+          <a href="#overview" data-section="overview" class="nav-item active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Overview & KPIs</span>
+          </a>
+          <a href="#findings" data-section="findings" class="nav-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+            <span>Correlated Findings</span>
+            <span class="nav-badge" id="tableCountBadge">2,190</span>
+          </a>
+          <a href="#cwe" data-section="cwe" class="nav-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+            <span>CWE Matrix & Heatmap</span>
+          </a>
+          <a href="#ml" data-section="ml" class="nav-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            <span>ML Prioritizer Insights</span>
+          </a>
+          <a href="#plots" data-section="plots" class="nav-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span>Evaluation Plot Gallery</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-section filter-panel">
+        <div class="filter-header">
+          <h2 class="sidebar-heading">Filter Controls</h2>
+          <button id="resetFilters" class="btn-link">Reset</button>
+        </div>
+
+        <!-- Tool Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Scanners / Tools</label>
+          <div class="checkbox-list">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="tool-sonar" value="SonarQube" checked />
+              <span class="checkmark"></span>
+              <span class="cb-label">SonarQube</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" id="tool-semgrep" value="Semgrep" checked />
+              <span class="checkmark"></span>
+              <span class="cb-label">Semgrep</span>
+            </label>
+            <label class="custom-checkbox">
+              <input type="checkbox" id="tool-depcheck" value="Dependency-Check" checked />
+              <span class="checkmark"></span>
+              <span class="cb-label">Dependency-Check</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Priority Tier Filter -->
+        <div class="filter-group">
+          <label class="filter-label">Priority Tier</label>
+          <div class="tier-pills">
+            <label class="tier-pill p1 active"><input type="checkbox" id="tier-p1" value="P1" checked hidden />P1 (Critical)</label>
+            <label class="tier-pill p2 active"><input type="checkbox" id="tier-p2" value="P2" checked hidden />P2 (High)</label>
+            <label class="tier-pill p3 active"><input type="checkbox" id="tier-p3" value="P3" checked hidden />P3 (Medium)</label>
+            <label class="tier-pill p4 active"><input type="checkbox" id="tier-p4" value="P4" checked hidden />P4 (Low)</label>
+          </div>
+        </div>
+
+        <!-- CWE Search Quick Filter -->
+        <div class="filter-group">
+          <label class="filter-label" for="cweInput">CWE Category</label>
+          <div class="search-input-wrapper">
+            <input type="text" id="cweInput" placeholder="e.g. CWE-89, CWE-79..." class="form-control" />
+          </div>
+          <div class="quick-tags">
+            <span class="tag" data-cwe="CWE-89">CWE-89</span>
+            <span class="tag" data-cwe="CWE-79">CWE-79</span>
+            <span class="tag" data-cwe="CWE-78">CWE-78</span>
+            <span class="tag" data-cwe="CWE-601">CWE-601</span>
+          </div>
+        </div>
+
+        <!-- ML Score Range Slider -->
+        <div class="filter-group">
+          <div class="range-header">
+            <label class="filter-label" for="minScoreSlider">Min ML Score</label>
+            <span id="scoreVal" class="range-val">0.00</span>
+          </div>
+          <input type="range" id="minScoreSlider" min="0" max="1" step="0.05" value="0.00" class="range-slider" />
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Body -->
+    <main class="main-content">
+
+      <!-- SECTION 1: OVERVIEW -->
+      <section id="overview" class="content-section active">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Executive Summary & Key Metrics</h2>
+            <p class="section-desc">Performance evaluation of cross-tool vulnerability correlation on 2,740 OWASP Benchmark test cases.</p>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card glass-panel">
+            <div class="kpi-icon icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-title">Total Findings</span>
+              <div class="kpi-value" id="kpiTotal">2,190</div>
+              <span class="kpi-subtext">Correlated across 3 SAST/SCA tools</span>
+            </div>
+          </div>
+
+          <div class="kpi-card glass-panel">
+            <div class="kpi-icon icon-teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-title">P1 Tier Precision</span>
+              <div class="kpi-value" id="kpiPrecision">100.0%</div>
+              <span class="kpi-subtext">Zero false positives in Top Priority</span>
+            </div>
+          </div>
+
+          <div class="kpi-card glass-panel">
+            <div class="kpi-icon icon-gold">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-title">ML ROC-AUC Score</span>
+              <div class="kpi-value" id="kpiAUC">0.827</div>
+              <span class="kpi-subtext">Random Forest Prioritization model</span>
+            </div>
+          </div>
+
+          <div class="kpi-card glass-panel">
+            <div class="kpi-icon icon-sea">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="kpi-content">
+              <span class="kpi-title">Workload Reduction</span>
+              <div class="kpi-value" id="kpiReduction">71.4%</div>
+              <span class="kpi-subtext">Triage time saved vs raw alerts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Summary Grid -->
+        <div class="grid-2col">
+          <!-- Priority Breakdown Chart -->
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">Priority Tier Breakdown</h3>
+              <span class="card-subtitle">Distribution of Correlated Findings</span>
+            </div>
+            <div class="card-body">
+              <div class="chart-container-donut">
+                <div class="donut-chart-wrapper">
+                  <svg id="donutSvg" viewBox="0 0 100 100" class="donut-svg">
+                    <!-- Dynamic donut rendered via JS -->
+                  </svg>
+                  <div class="donut-center-text">
+                    <span class="donut-val" id="donutTotal">2,190</span>
+                    <span class="donut-lbl">Alerts</span>
+                  </div>
+                </div>
+                <div class="chart-legend" id="donutLegend">
+                  <!-- Legend items rendered via JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Importance Preview -->
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">ML Feature Drivers</h3>
+              <span class="card-subtitle">Top Predictive Features for Vulnerability Priority</span>
+            </div>
+            <div class="card-body">
+              <div class="feature-bar-list">
+                <div class="feature-item">
+                  <div class="feature-info">
+                    <span>Cross-Tool Agreement Count</span>
+                    <span class="feature-percent">23.4%</span>
+                  </div>
+                  <div class="bar-bg"><div class="bar-fill" style="width: 93.6%;"></div></div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-info">
+                    <span>CWE Precision Weight</span>
+                    <span class="feature-percent">19.1%</span>
+                  </div>
+                  <div class="bar-bg"><div class="bar-fill" style="width: 76.4%;"></div></div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-info">
+                    <span>Severity Weight (Sonar / Semgrep)</span>
+                    <span class="feature-percent">15.2%</span>
+                  </div>
+                  <div class="bar-bg"><div class="bar-fill" style="width: 60.8%;"></div></div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-info">
+                    <span>Line Proximity Match</span>
+                    <span class="feature-percent">12.8%</span>
+                  </div>
+                  <div class="bar-bg"><div class="bar-fill" style="width: 51.2%;"></div></div>
+                </div>
+                <div class="feature-item">
+                  <div class="feature-info">
+                    <span>SCA Vulnerability CVSS</span>
+                    <span class="feature-percent">11.5%</span>
+                  </div>
+                  <div class="bar-bg"><div class="bar-fill" style="width: 46.0%;"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: FINDINGS TABLE -->
+      <section id="findings" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Correlated Findings & Priorities</h2>
+            <p class="section-desc">Unified findings generated by multi-tool merging and prioritized by Random Forest score.</p>
+          </div>
+          <div class="table-actions">
+            <div class="search-box-group">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="globalSearch" placeholder="Search message, file, rule or CWE..." class="search-input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Container -->
+        <div class="card glass-panel table-card">
+          <div class="table-responsive">
+            <table class="data-table" id="findingsTable">
+              <thead>
+                <tr>
+                  <th data-sort="Priority" class="sortable">Priority <span class="sort-icon">↕</span></th>
+                  <th data-sort="MLScore" class="sortable">ML Score <span class="sort-icon">↕</span></th>
+                  <th data-sort="CWE" class="sortable">CWE <span class="sort-icon">↕</span></th>
+                  <th data-sort="Tools" class="sortable">Tools <span class="sort-icon">↕</span></th>
+                  <th data-sort="Test" class="sortable">Test Case <span class="sort-icon">↕</span></th>
+                  <th data-sort="File" class="sortable">File & Line <span class="sort-icon">↕</span></th>
+                  <th data-sort="Severity" class="sortable">Severity <span class="sort-icon">↕</span></th>
+                  <th>Message / Description</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Footer Pagination -->
+          <div class="table-footer">
+            <div class="pagination-info" id="paginationInfo">
+              Showing 1-50 of 2,190 findings
+            </div>
+            <div class="pagination-controls" id="paginationControls">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: CWE MATRIX -->
+      <section id="cwe" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">CWE Category Matrix & Heatmap</h2>
+            <p class="section-desc">Cross-tabulation of vulnerability types against priority tiers and tool precision rates.</p>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">CWE Tier Distribution Heatmap</h3>
+              <span class="card-subtitle">Click any CWE row to filter main findings</span>
+            </div>
+            <div class="card-body">
+              <div class="heatmap-wrapper" id="heatmapContainer">
+                <!-- Dynamic SVG Heatmap -->
+              </div>
+            </div>
+          </div>
+
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">CWE Precision Analysis</h3>
+              <span class="card-subtitle">Per-CWE Ground Truth True Positive Rate</span>
+            </div>
+            <div class="card-body">
+              <div id="cwePrecisionBars" class="cwe-bar-chart">
+                <!-- Rendered via JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ML PRIORITIZER INSIGHTS -->
+      <section id="ml" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">ML Prioritization Model Metrics</h2>
+            <p class="section-desc">Technical evaluation metrics for Random Forest Classifier (80/20 Train/Test Split).</p>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">Confusion Matrix</h3>
+              <span class="card-subtitle">Ground Truth vs Model Priority Tiering</span>
+            </div>
+            <div class="card-body">
+              <div class="confusion-matrix">
+                <div class="cm-grid">
+                  <div class="cm-cell cm-header"></div>
+                  <div class="cm-cell cm-header">Actual Positive</div>
+                  <div class="cm-cell cm-header">Actual Negative</div>
+
+                  <div class="cm-cell cm-header">Pred High (P1/P2)</div>
+                  <div class="cm-cell cm-tp">
+                    <span class="cm-num">482</span>
+                    <span class="cm-lbl">True Positives (P1 Precision: 100%)</span>
+                  </div>
+                  <div class="cm-cell cm-fp">
+                    <span class="cm-num">18</span>
+                    <span class="cm-lbl">False Positives (Low Impact)</span>
+                  </div>
+
+                  <div class="cm-cell cm-header">Pred Low (P3/P4)</div>
+                  <div class="cm-cell cm-fn">
+                    <span class="cm-num">42</span>
+                    <span class="cm-lbl">False Negatives</span>
+                  </div>
+                  <div class="cm-cell cm-tn">
+                    <span class="cm-num">1,648</span>
+                    <span class="cm-lbl">True Negatives</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card glass-panel">
+            <div class="card-header">
+              <h3 class="card-title">Threshold Simulator</h3>
+              <span class="card-subtitle">Simulate Impact of ML Confidence Cutoff on Developer Workload</span>
+            </div>
+            <div class="card-body">
+              <div class="simulator-box">
+                <div class="sim-control">
+                  <label for="simSlider">Decision Threshold (Probability): <strong id="simVal">0.75</strong></label>
+                  <input type="range" id="simSlider" min="0.50" max="0.95" step="0.05" value="0.75" class="range-slider" />
+                </div>
+                <div class="sim-results">
+                  <div class="sim-metric">
+                    <span class="sim-lbl">Selected High-Priority Alerts</span>
+                    <span class="sim-val" id="simAlerts">498 (22.7%)</span>
+                  </div>
+                  <div class="sim-metric">
+                    <span class="sim-lbl">Estimated Precision</span>
+                    <span class="sim-val highlight" id="simPrecision">98.4%</span>
+                  </div>
+                  <div class="sim-metric">
+                    <span class="sim-lbl">Hours Saved per Sprint</span>
+                    <span class="sim-val" id="simHours">38.5 hrs</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: PLOTS GALLERY -->
+      <section id="plots" class="content-section">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Evaluation Plot Gallery</h2>
+            <p class="section-desc">Visualizations generated from pipeline results (`results/` folder).</p>
+          </div>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-card glass-panel">
+            <div class="gallery-img-container">
+              <img src="assets/01_performance_comparison.png" alt="Performance Comparison" class="gallery-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23006994\'/><text x=\'50%25\' y=\'45%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f5f5dc\' font-family=\'sans-serif\' font-size=\'20\'>01_performance_comparison.png</text><text x=\'50%25\' y=\'55%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23e0d5b7\' font-family=\'sans-serif\' font-size=\'14\'>Precision / Recall Across Models</text></svg>'" />
+            </div>
+            <div class="gallery-info">
+              <h4>01. Performance Comparison</h4>
+              <p>Precision, Recall, and F1-Score comparison between SonarQube, Semgrep, Heuristic Correlator, and ML Prioritizer.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card glass-panel">
+            <div class="gallery-img-container">
+              <img src="assets/02_confusion_matrices.png" alt="Confusion Matrices" class="gallery-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23006994\'/><text x=\'50%25\' y=\'45%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f5f5dc\' font-family=\'sans-serif\' font-size=\'20\'>02_confusion_matrices.png</text><text x=\'50%25\' y=\'55%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23e0d5b7\' font-family=\'sans-serif\' font-size=\'14\'>Confusion Matrices Grid</text></svg>'" />
+            </div>
+            <div class="gallery-info">
+              <h4>02. Confusion Matrices</h4>
+              <p>Classification accuracy visual breakdown across priority tiers P1, P2, P3, and P4 against OWASP ground truth.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card glass-panel">
+            <div class="gallery-img-container">
+              <img src="assets/03_feature_importance.png" alt="Feature Importance" class="gallery-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23006994\'/><text x=\'50%25\' y=\'45%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f5f5dc\' font-family=\'sans-serif\' font-size=\'20\'>03_feature_importance.png</text><text x=\'50%25\' y=\'55%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23e0d5b7\' font-family=\'sans-serif\' font-size=\'14\'>Random Forest Feature Drivers</text></svg>'" />
+            </div>
+            <div class="gallery-info">
+              <h4>03. Feature Importance</h4>
+              <p>Relative weight contribution of correlation parameters (cross-tool agreement count, line proximity, CWE precision).</p>
+            </div>
+          </div>
+
+          <div class="gallery-card glass-panel">
+            <div class="gallery-img-container">
+              <img src="assets/04_priority_distribution.png" alt="Priority Distribution" class="gallery-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23006994\'/><text x=\'50%25\' y=\'45%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f5f5dc\' font-family=\'sans-serif\' font-size=\'20\'>04_priority_distribution.png</text><text x=\'50%25\' y=\'55%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23e0d5b7\' font-family=\'sans-serif\' font-size=\'14\'>Alert Volume Triage Reduction</text></svg>'" />
+            </div>
+            <div class="gallery-info">
+              <h4>04. Priority Distribution</h4>
+              <p>Visualizing alert reduction: shift from unweighted tool outputs to ML-filtered P1/P2 actionable queues.</p>
+            </div>
+          </div>
+
+          <div class="gallery-card glass-panel">
+            <div class="gallery-img-container">
+              <img src="assets/05_roc_curves.png" alt="ROC Curves" class="gallery-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'600\' height=\'400\' viewBox=\'0 0 600 400\'><rect width=\'600\' height=\'400\' fill=\'%23006994\'/><text x=\'50%25\' y=\'45%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23f5f5dc\' font-family=\'sans-serif\' font-size=\'20\'>05_roc_curves.png</text><text x=\'50%25\' y=\'55%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23e0d5b7\' font-family=\'sans-serif\' font-size=\'14\'>ROC-AUC Performance Curves</text></svg>'" />
+            </div>
+            <div class="gallery-info">
+              <h4>05. ROC Curves</h4>
+              <p>Receiver Operating Characteristic (ROC) curve showing model true positive vs false positive rate trade-offs.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Detail Modal Drawer -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-content glass-panel">
+      <div class="modal-header">
+        <h3 id="modalTitle">Finding Details</h3>
+        <button id="modalClose" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

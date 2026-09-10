@@ -1,0 +1,12 @@
+cwe,true_positives,false_positives,total_flagged,precision,tier
+89,416,308,724,0.5746,"Tier C - Low reliability, flag for manual review"
+330,427,0,427,1.0,Tier A - High reliability
+79,202,108,310,0.6516,Tier B - Standard reliability
+327,256,27,283,0.9046,Tier A - High reliability
+22,120,106,226,0.531,"Tier C - Low reliability, flag for manual review"
+78,117,109,226,0.5177,"Tier C - Low reliability, flag for manual review"
+328,174,0,174,1.0,Tier A - High reliability
+501,68,26,94,0.7234,Tier B - Standard reliability
+90,26,28,54,0.4815,"Tier C - Low reliability, flag for manual review"
+614,36,0,36,1.0,Tier A - High reliability
+643,14,13,27,0.5185,"Tier C - Low reliability, flag for manual review"

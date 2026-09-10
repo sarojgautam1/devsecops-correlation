@@ -1,0 +1,5 @@
+priority,true_positives,false_positives,total,precision
+P1,294,0,294,1.0
+P2,330,141,471,0.7006
+P3,341,176,517,0.6596
+P4,528,366,894,0.5906
