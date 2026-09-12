@@ -1,10 +1,10 @@
 test_name,file,line,rule_id,severity,message,tool,cwe
-BenchmarkTest00005,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00005.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00005,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00005.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00005,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00005.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00008,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00008.java,57,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00018,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00018.java,59,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest00019,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00019.java,51,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00019,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00019.java,51,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00019,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00019.java,51,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00020.java,59,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00020.java,59,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00023,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00023.java,47,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -16,15 +16,15 @@ BenchmarkTest00035,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00037,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00037.java,68,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00043,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00043.java,54,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00046,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00046.java,50,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
-BenchmarkTest00050,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00050.java,60,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00050,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00050.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00050,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00050.java,60,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00052,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00052.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00053,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00053.java,86,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00053,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00053.java,86,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00055,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00055.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00055,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00055.java,80,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00056,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00056.java,90,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00055,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00055.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00056,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00056.java,90,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00056,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00056.java,90,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00057,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00057.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00057,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00057.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00059,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00059.java,84,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
@@ -62,10 +62,10 @@ BenchmarkTest00120,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00120,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00120.java,70,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00123,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00123.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00123,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00123.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00124,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00124.java,69,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00124,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00124.java,69,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00125,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00125.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00124,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00124.java,69,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00125,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00125.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00125,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00125.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00127,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00127.java,78,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00128,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00128.java,73,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00129,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00129.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
@@ -93,8 +93,8 @@ BenchmarkTest00205,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00206,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00206.java,79,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00208,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00208.java,80,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00208,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00208.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00210,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00210.java,77,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00210,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00210.java,77,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00210,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00210.java,77,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00213,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00213.java,88,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00214,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00214.java,78,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00223,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00223.java,74,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -143,8 +143,8 @@ BenchmarkTest00344,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00346,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00346.java,53,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00346,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00346.java,55,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00347,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00347.java,47,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
-BenchmarkTest00354,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00354.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00354,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00354.java,60,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest00354,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00354.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00355,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00355.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00355,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00355.java,73,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00356,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00356.java,58,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
@@ -171,10 +171,10 @@ BenchmarkTest00438,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00439,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00439.java,53,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00440,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00440.java,59,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00441,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00441.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest00445,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00445.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00445,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00445.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00446,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00446.java,68,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00445,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00445.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00446,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00446.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00446,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00446.java,68,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00448,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00448.java,62,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00448,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00448.java,62,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00449,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00449.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
@@ -205,10 +205,10 @@ BenchmarkTest00516,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00517,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00517.java,62,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00518,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00518.java,59,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00519,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00519.java,63,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest00521,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00521.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00521,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00521.java,80,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00522,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00522.java,79,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00521,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00521.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00522,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00522.java,79,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00522,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00522.java,79,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00524,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00524.java,97,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00531,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00531.java,73,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00531,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00531.java,75,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -237,10 +237,10 @@ BenchmarkTest00605,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00606,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00606.java,72,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00608,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00608.java,73,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00608,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00608.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00609,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00609.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00609,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00609.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00610,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00610.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00609,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00609.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00610,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00610.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00610,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00610.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00611,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00611.java,68,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00611,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00611.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00614,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00614.java,71,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
@@ -249,8 +249,8 @@ BenchmarkTest00615,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00615,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00615.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00616,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00616.java,55,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00616,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00616.java,55,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
-BenchmarkTest00617,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00617.java,56,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00617,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00617.java,56,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest00617,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00617.java,56,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00618,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00618.java,70,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00631,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00631.java,57,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00631,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00631.java,59,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -269,16 +269,16 @@ BenchmarkTest00676,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00680,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00680.java,61,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00681,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00681.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00682,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00682.java,74,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest00684,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00684.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00684,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00684.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00685,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00685.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00684,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00684.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00685,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00685.java,67,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00688,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00688.java,69,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00685,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00685.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00688,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00688.java,69,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00691,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00691.java,71,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00688,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00688.java,69,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00691,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00691.java,71,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00692,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00692.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest00691,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00691.java,71,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00692,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00692.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00692,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00692.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00693,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00693.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00693,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00693.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00702,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00702.java,57,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -300,8 +300,8 @@ BenchmarkTest00771,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00772,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00772.java,74,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00773,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00773.java,65,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00774,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00774.java,74,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest00779,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00779.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00779,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00779.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00779,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00779.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00781,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00781.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00781,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00781.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00789,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00789.java,80,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -320,14 +320,14 @@ BenchmarkTest00850,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest00851,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00851.java,82,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest00853,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00853.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00853,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00853.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest00855,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00855.java,71,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00855,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00855.java,71,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00855,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00855.java,71,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00856,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00856.java,80,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest00856,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00856.java,80,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00857,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00857.java,79,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest00857,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00857.java,79,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest00859,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00859.java,59,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00859,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00859.java,59,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest00859,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00859.java,59,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest00868,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00868.java,75,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00868,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00868.java,77,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest00869,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest00869.java,74,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -374,16 +374,16 @@ BenchmarkTest01003,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01004,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01004.java,74,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01011,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01011.java,73,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01012,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01012.java,73,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01015,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01015.java,66,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01015,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01015.java,66,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01016,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01016.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01015,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01015.java,66,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01016,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01016.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01017,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01017.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01016,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01016.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01017,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01017.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01017,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01017.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01018,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01018.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01018,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01018.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01020.java,58,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01020.java,58,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01020.java,58,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01021,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01021.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01022,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01022.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01038,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01038.java,54,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -401,18 +401,18 @@ BenchmarkTest01095,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01096,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01096.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01097,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01097.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01098,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01098.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01099,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01099.java,76,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01099,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01099.java,76,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01099,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01099.java,76,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01102,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01102.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01102,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01102.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01103,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01103.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01103,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01103.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01105,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01105.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01103,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01103.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01105,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01105.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01106,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01106.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01105,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01105.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01106,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01106.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01107,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01107.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01106,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01106.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01107,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01107.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01107,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01107.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01108,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01108.java,78,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01119,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01119.java,63,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01123,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01123.java,64,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -423,12 +423,12 @@ BenchmarkTest01130,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01131,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01131.java,63,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01132,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01132.java,63,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01133,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01133.java,63,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
-BenchmarkTest01148,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01148.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01148,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01148.java,67,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01149,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01149.java,67,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01148,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01148.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01149,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01149.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01150,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01150.java,66,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01149,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01149.java,67,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01150,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01150.java,66,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01150,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01150.java,66,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01153,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01153.java,70,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01162,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01162.java,55,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01163,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01163.java,55,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -454,8 +454,8 @@ BenchmarkTest01228,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01228,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01228.java,59,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01229,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01229.java,59,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01229,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01229.java,59,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01230,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01230.java,53,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01230,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01230.java,53,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01230,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01230.java,53,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01244,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01244.java,54,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest01244,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01244.java,56,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest01246,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01246.java,49,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -486,10 +486,10 @@ BenchmarkTest01317,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01317,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01317.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01318,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01318.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01318,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01318.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01320,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01320.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01320,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01320.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01322,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01322.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01320,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01320.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01322,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01322.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01322,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01322.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01323,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01323.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01323,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01323.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01325,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01325.java,57,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
@@ -542,8 +542,8 @@ BenchmarkTest01483,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01483,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01483.java,62,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01484,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01484.java,62,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01484,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01484.java,62,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01486,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01486.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01486,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01486.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01486,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01486.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01489,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01489.java,55,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01489,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01489.java,55,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01502,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01502.java,50,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -558,10 +558,10 @@ BenchmarkTest01557,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01558,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01558.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01559,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01559.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01560,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01560.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01565,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01565.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01565,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01565.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01566,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01566.java,55,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01565,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01565.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01566,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01566.java,55,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01566,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01566.java,55,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01567,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01567.java,65,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01575,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01575.java,50,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01577,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01577.java,51,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -579,12 +579,12 @@ BenchmarkTest01630,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01631,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01631.java,55,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01634,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01634.java,85,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01634,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01634.java,85,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01637,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01637.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01637,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01637.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01638,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01638.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01637,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01637.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01638,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01638.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01639,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01639.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01638,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01638.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01639,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01639.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01639,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01639.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01641,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01641.java,77,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01641,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01641.java,77,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01648,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01648.java,72,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -613,12 +613,12 @@ BenchmarkTest01730,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01731,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01731.java,77,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01732,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01732.java,77,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01733,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01733.java,77,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01740,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01740.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01740,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01740.java,54,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01741,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01741.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01740,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01740.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01741,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01741.java,54,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01742,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01742.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01741,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01741.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01742,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01742.java,54,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01742,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01742.java,54,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01757,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01757.java,55,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest01757,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01757.java,57,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest01761,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01761.java,50,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -639,14 +639,14 @@ BenchmarkTest01817,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01818,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01818.java,54,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01819,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01819.java,54,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01820,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01820.java,54,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01822,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01822.java,81,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01822,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01822.java,81,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01823,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01823.java,81,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01822,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01822.java,81,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01823,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01823.java,81,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest01823,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01823.java,81,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01829,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01829.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01829,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01829.java,73,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
-BenchmarkTest01830,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01830.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01830,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01830.java,73,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01830,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01830.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01842,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01842.java,68,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01843,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01843.java,68,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01844,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01844.java,74,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -674,14 +674,14 @@ BenchmarkTest01888,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01889,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01889.java,73,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01890,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01890.java,73,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01891,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01891.java,73,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01895,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01895.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01895,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01895.java,65,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01895,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01895.java,65,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest01897,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01897.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01897,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01897.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01898,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01898.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01898,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01898.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01900,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01900.java,58,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01898,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01898.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01900,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01900.java,58,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01900,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01900.java,58,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01901,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01901.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01910,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01910.java,53,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01911,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01911.java,59,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -698,12 +698,12 @@ BenchmarkTest01970,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest01971,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01971.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01972,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01972.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest01973,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01973.java,58,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest01978,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01978.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01978,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01978.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest01980,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01980.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01978,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01978.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01980,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01980.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest01981,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01981.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest01980,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01980.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01981,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01981.java,68,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest01981,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01981.java,68,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest01982,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01982.java,78,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest01992,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01992.java,63,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest01999,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest01999.java,64,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -720,10 +720,10 @@ BenchmarkTest02019,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest02019,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02019.java,68,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02020.java,67,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02020,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02020.java,67,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest02022,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02022.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02022,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02022.java,60,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
-BenchmarkTest02023,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02023.java,60,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest02022,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02022.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02023,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02023.java,60,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02023,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02023.java,60,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest02024,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02024.java,70,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest02038,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02038.java,55,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
 BenchmarkTest02039,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02039.java,55,java:S2245,MAJOR,Make sure that using this pseudorandom number generator is safe here.,sonarqube,CWE-338
@@ -763,10 +763,10 @@ BenchmarkTest02185,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest02186,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02186.java,53,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02187,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02187.java,53,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02188,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02188.java,53,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest02192,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02192.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02192,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02192.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest02193,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02193.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02192,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02192.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02193,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02193.java,64,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest02193,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02193.java,64,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02194,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02194.java,63,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02194,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02194.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02195,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02195.java,63,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
@@ -792,16 +792,16 @@ BenchmarkTest02285,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest02286,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02286.java,57,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02287,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02287.java,57,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02288,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02288.java,57,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest02290,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02290.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02290,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02290.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02290,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02290.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02291,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02291.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02291,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02291.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest02292,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02292.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02292,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02292.java,74,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02292,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02292.java,74,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02293,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02293.java,73,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02293,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02293.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest02294,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02294.java,73,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02294,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02294.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02294,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02294.java,73,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02295,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02295.java,73,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02295,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02295.java,73,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02296,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02296.java,77,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
@@ -822,12 +822,12 @@ BenchmarkTest02366,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest02367,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02367.java,67,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02368,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02368.java,67,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
 BenchmarkTest02369,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02369.java,67,java:S2077,MAJOR,Make sure using a dynamically formatted SQL query is safe here.,sonarqube,CWE-89
-BenchmarkTest02373,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02373.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02373,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02373.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
-BenchmarkTest02374,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02374.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest02373,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02373.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02374,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02374.java,61,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest02375,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02375.java,55,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
+BenchmarkTest02374,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02374.java,61,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02375,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02375.java,55,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
+BenchmarkTest02375,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02375.java,55,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02385,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02385.java,56,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest02385,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02385.java,58,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest02386,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02386.java,51,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
@@ -884,8 +884,8 @@ BenchmarkTest02548,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchm
 BenchmarkTest02548,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02548.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02549,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02549.java,84,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
 BenchmarkTest02549,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02549.java,84,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
-BenchmarkTest02550,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02550.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02550,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02550.java,83,java:S5542,CRITICAL,Use another cipher mode or disable padding.,sonarqube,CWE-327
+BenchmarkTest02550,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02550.java,83,java:S5547,CRITICAL,Use a strong cipher algorithm.,sonarqube,CWE-327
 BenchmarkTest02552,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02552.java,87,java:S5542,CRITICAL,Use a secure cipher mode.,sonarqube,CWE-327
 BenchmarkTest02573,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02573.java,73,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240
 BenchmarkTest02574,owasp-benchmark:data/benchmark/src/main/java/org/owasp/benchmark/testcode/BenchmarkTest02574.java,73,java:S4790,CRITICAL,Make sure this weak hash algorithm is not used in a sensitive context here.,sonarqube,CWE-1240

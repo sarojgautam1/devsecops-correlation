@@ -2,10 +2,9 @@ import csv
 import re
 import requests
 import time
-
+import os
 SONAR_URL = "http://localhost:9000"
-SONAR_TOKEN = "squ_3d639feb3feb8a1871c4b6b5b89b5e10241acdd2"
-
+SONAR_TOKEN = os.environ.get("SONAR_TOKEN")
 INPUT_FILE = "results/sonar_filtered.csv"
 OUTPUT_FILE = "results/sonar_filtered_with_cwe.csv"
 

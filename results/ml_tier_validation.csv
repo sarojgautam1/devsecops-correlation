@@ -1,0 +1,5 @@
+tier,true_positives,false_positives,total,precision
+P1,473,0,473,1.0
+P2,179,100,279,0.6416
+P3,607,440,1047,0.5798
+P4,156,785,941,0.1658

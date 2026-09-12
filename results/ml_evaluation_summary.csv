@@ -1,5 +1,5 @@
 Model/Tool,Precision,Recall,F1-Score,ROC-AUC
-Semgrep Alone,67.52%,82.26%,0.7416,N/A
+Semgrep Alone,69.45%,89.96%,0.7839,N/A
 SonarQube Alone,77.94%,41.20%,0.5391,N/A
-Hybrid ML Prioritizer (5-Fold CV),69.25%,86.64%,0.7691,0.8272
-Hybrid ML Prioritizer (P1+P2 Filtered),83.10%,46.57%,0.5969,0.8272
+Hybrid ML Prioritizer (5-Fold CV),70.69%,85.51%,0.7731,0.8406
+Hybrid ML Prioritizer (P1+P2 Filtered),86.70%,46.08%,0.6018,0.8406

@@ -40,6 +40,12 @@ def load_cwe_precision(path):
 
 
 def load_correlated_findings(path):
+    """
+    Aggregates ALL correlated rows per test_name, since a single test
+    case can have multiple distinct correlated findings (e.g. different
+    CWEs at different lines). Previously this overwrote earlier rows,
+    silently losing tool-agreement information for such cases.
+    """
     findings_by_test = {}
     with open(path, "r") as f:
         reader = csv.DictReader(f)
@@ -47,7 +53,28 @@ def load_correlated_findings(path):
             test_name = row.get("test_name", "")
             if not test_name:
                 continue
-            findings_by_test[test_name] = row
+
+            if test_name not in findings_by_test:
+                findings_by_test[test_name] = {
+                    "max_num_tools_agreeing": 0,
+                    "flagged_by_semgrep": 0,
+                    "flagged_by_sonar": 0,
+                    "sample_message": row.get("sample_message", "")
+                }
+
+            entry = findings_by_test[test_name]
+            tools = row.get("tools_involved", "")
+            try:
+                num_tools = int(row.get("num_tools_agreeing", 1))
+            except ValueError:
+                num_tools = 1
+
+            entry["max_num_tools_agreeing"] = max(entry["max_num_tools_agreeing"], num_tools)
+            if "semgrep" in tools:
+                entry["flagged_by_semgrep"] = 1
+            if "sonarqube" in tools:
+                entry["flagged_by_sonar"] = 1
+
     return findings_by_test
 
 
@@ -60,10 +87,9 @@ def build_dataset(ground_truth, findings, cwe_prec):
 
         if test_name in findings:
             f = findings[test_name]
-            num_tools = int(f.get("num_tools_agreeing", 1))
-            tools = f.get("tools_involved", "")
-            flagged_semgrep = 1 if "semgrep" in tools else 0
-            flagged_sonar = 1 if "sonarqube" in tools else 0
+            num_tools = f["max_num_tools_agreeing"]
+            flagged_semgrep = f["flagged_by_semgrep"]
+            flagged_sonar = f["flagged_by_sonar"]
             msg = f.get("sample_message", "")
         else:
             num_tools = 0
@@ -93,13 +119,17 @@ def train_and_evaluate_ml(df):
 
     cwe_dummies = pd.get_dummies(df["cwe"], prefix="cwe", drop_first=True)
 
+    # NOTE: cwe_historical_precision is INTENTIONALLY excluded from X here.
+    # It will be computed fresh, per-fold, using only training-fold labels,
+    # to avoid leaking full-dataset ground truth into a feature.
     X = pd.concat([
-        df[["num_tools_agreeing", "flagged_by_semgrep", "flagged_by_sonar", "cwe_historical_precision"]],
+        df[["num_tools_agreeing", "flagged_by_semgrep", "flagged_by_sonar"]],
         cwe_dummies,
         tfidf_df
     ], axis=1)
-    
+
     y = df["real_vulnerability"].values
+    cwe_series = df["cwe"].values  # keep raw CWE labels around for fold-safe encoding
 
     skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
     
@@ -111,8 +141,17 @@ def train_and_evaluate_ml(df):
     cv_precisions, cv_recalls, cv_f1s, cv_aucs = [], [], [], []
 
     for fold, (train_idx, val_idx) in enumerate(skf.split(X, y), 1):
-        X_train, y_train = X.iloc[train_idx], y[train_idx]
-        X_val, y_val = X.iloc[val_idx], y[val_idx]
+        X_train, y_train = X.iloc[train_idx].copy(), y[train_idx]
+        X_val, y_val = X.iloc[val_idx].copy(), y[val_idx]
+
+        # Fold-safe CWE precision: compute using ONLY this fold's training labels
+        train_cwe = pd.Series(cwe_series[train_idx])
+        train_labels = pd.Series(y_train)
+        fold_cwe_precision = train_labels.groupby(train_cwe).mean()
+        fallback = train_labels.mean()  # overall training-fold rate, for unseen CWEs
+
+        X_train["cwe_historical_precision"] = pd.Series(cwe_series[train_idx]).map(fold_cwe_precision).values
+        X_val["cwe_historical_precision"] = pd.Series(cwe_series[val_idx]).map(fold_cwe_precision).fillna(fallback).values
 
         rf.fit(X_train, y_train)
 
@@ -138,6 +177,10 @@ def train_and_evaluate_ml(df):
     print(f"Mean CV F1-Score  : {np.mean(cv_f1s):.4f}")
     print(f"Mean CV ROC-AUC   : {np.mean(cv_aucs):.4f}")
 
+    # Final production model: safe to use full-dataset CWE precision here,
+    # since this model's predictions are NOT used for reported evaluation metrics
+    # (those come from oof_probs, computed with fold-safe features above).
+    X["cwe_historical_precision"] = df["cwe_historical_precision"].values
     rf.fit(X, y)
     df["ml_risk_score"] = oof_probs
 
@@ -160,6 +203,12 @@ def train_and_evaluate_ml(df):
     print("\n--- Top 10 Feature Importances ---")
     for name, imp in feat_imp[:10]:
         print(f"{name:<35}: {imp:.4f}")
+
+    # NEW: save ALL feature importances to a file, so plotting scripts
+    # can read real numbers instead of requiring manual hardcoding
+    feat_imp_df = pd.DataFrame(feat_imp, columns=["feature", "importance"])
+    feat_imp_df.to_csv("results/feature_importance.csv", index=False)
+    print("Saved full feature importance table to results/feature_importance.csv")
 
     return df, feat_imp, np.mean(cv_precisions), np.mean(cv_recalls), np.mean(cv_f1s), np.mean(cv_aucs)
 

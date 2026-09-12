@@ -1,4 +1,4 @@
-﻿import os
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,18 +10,61 @@ os.makedirs(PLOTS_DIR, exist_ok=True)
 plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.available else 'default')
 sns.set_theme(style="whitegrid")
 
-def plot_performance_comparison():
-    data = {
-        'Tool/Model': ['Semgrep Alone', 'SonarQube Alone', 'Heuristic Engine (P1)', 'Hybrid ML (5-Fold CV)', 'Hybrid ML (P1+P2 Filtered)'],
-        'Precision': [67.52, 77.94, 100.0, 69.25, 83.10],
-        'Recall': [82.26, 41.20, 21.46, 86.64, 46.57],
-        'F1-Score': [74.16, 53.91, 35.34, 76.91, 59.69]
-    }
-    df = pd.DataFrame(data)
+GROUND_TRUTH_FILE = "data/benchmark/expectedresults-1.2.csv"
+
+
+def load_ground_truth_counts(path):
+    """Returns (total_real_positives, total_real_negatives) from the answer key."""
+    pos, neg = 0, 0
+    with open(path, "r") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("#") or not line:
+                continue
+            parts = line.split(",")
+            if parts[2].strip().lower() == "true":
+                pos += 1
+            else:
+                neg += 1
+    return pos, neg
+
+
+def pct_to_float(s):
+    """Converts a string like '69.45%' into 69.45 (float)."""
+    return float(str(s).replace("%", ""))
+
+
+def plot_performance_comparison(total_pos):
+    ml_summary = pd.read_csv("results/ml_evaluation_summary.csv")
+    heuristic = pd.read_csv("results/priority_tier_validation.csv")
+
+    p1_row = heuristic[heuristic["priority"] == "P1"].iloc[0]
+    p1_precision = p1_row["precision"] * 100
+    p1_recall = (p1_row["true_positives"] / total_pos) * 100
+    p1_f1 = 2 * p1_precision * p1_recall / (p1_precision + p1_recall) if (p1_precision + p1_recall) > 0 else 0
+
+    rows = []
+    for _, r in ml_summary.iterrows():
+        rows.append({
+            "Tool/Model": r["Model/Tool"],
+            "Precision": pct_to_float(r["Precision"]),
+            "Recall": pct_to_float(r["Recall"]),
+            "F1-Score": float(r["F1-Score"]) * 100
+        })
+
+    rows.insert(2, {
+        "Tool/Model": "Heuristic Engine (P1)",
+        "Precision": p1_precision,
+        "Recall": p1_recall,
+        "F1-Score": p1_f1
+    })
+
+    df = pd.DataFrame(rows)
     df_melted = df.melt(id_vars='Tool/Model', var_name='Metric', value_name='Percentage')
 
-    plt.figure(figsize=(12, 6))
-    ax = sns.barplot(data=df_melted, x='Tool/Model', y='Percentage', hue='Metric', palette=['#1f77b4', '#ff7f0e', '#2ca02c'])
+    plt.figure(figsize=(13, 6))
+    ax = sns.barplot(data=df_melted, x='Tool/Model', y='Percentage', hue='Metric',
+                      palette=['#1f77b4', '#ff7f0e', '#2ca02c'])
     plt.title('DevSecOps Correlation Performance Comparison (%)', fontsize=14, fontweight='bold', pad=15)
     plt.ylabel('Percentage (%) / F1 Score x100', fontsize=12)
     plt.xlabel('Tool / Priority Model', fontsize=12)
@@ -40,21 +83,44 @@ def plot_performance_comparison():
     print(f"Saved {PLOTS_DIR}/01_performance_comparison.png")
 
 
+def build_confusion_matrix_from_scored(path):
+    """Reads a score_*.py output CSV and builds a 2x2 confusion matrix."""
+    df = pd.read_csv(path)
+    tp = (df["outcome"] == "true_positive").sum()
+    fp = (df["outcome"] == "false_positive").sum()
+    fn = (df["outcome"] == "false_negative").sum()
+    tn = (df["outcome"] == "true_negative").sum()
+    return np.array([[tn, fp], [fn, tp]])
+
+
+def build_confusion_matrix_from_ml(path, threshold=0.5):
+    """
+    Reconstructs the ML model's confusion matrix using ml_risk_score
+    (which stores out-of-fold probabilities) at the same 0.5 threshold
+    used during cross-validation, so this matches the reported CV metrics.
+    """
+    df = pd.read_csv(path)
+    pred = (df["ml_risk_score"] >= threshold).astype(int)
+    actual = df["real_vulnerability"].astype(int)
+
+    tp = ((pred == 1) & (actual == 1)).sum()
+    fp = ((pred == 1) & (actual == 0)).sum()
+    fn = ((pred == 0) & (actual == 1)).sum()
+    tn = ((pred == 0) & (actual == 0)).sum()
+    return np.array([[tn, fp], [fn, tp]])
+
+
 def plot_confusion_matrices():
-    # True Positives, False Positives, False Negatives, True Negatives
-    # Semgrep: TP=1127, FP=542, FN=243, TN=828
-    semgrep_cm = np.array([[828, 542], [243, 1127]])
-    # Sonar: TP=565, FP=160, FN=805, TN=1210
-    sonar_cm = np.array([[1210, 160], [805, 565]])
-    # ML (CV): TP=1187, FP=527, FN=183, TN=843
-    ml_cm = np.array([[843, 527], [183, 1187]])
+    semgrep_cm = build_confusion_matrix_from_scored("results/semgrep_scored.csv")
+    sonar_cm = build_confusion_matrix_from_scored("results/sonar_scored.csv")
+    ml_cm = build_confusion_matrix_from_ml("results/ml_prioritized_findings.csv")
 
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
-    
+
     cms = [
         (semgrep_cm, "Semgrep Alone", axes[0]),
         (sonar_cm, "SonarQube Alone", axes[1]),
-        (ml_cm, "Hybrid ML Model (5-Fold CV)", axes[2])
+        (ml_cm, "Hybrid ML Model (5-Fold CV, leak-free)", axes[2])
     ]
 
     for cm, title, ax in cms:
@@ -70,31 +136,33 @@ def plot_confusion_matrices():
     print(f"Saved {PLOTS_DIR}/02_confusion_matrices.png")
 
 
+FEATURE_DISPLAY_NAMES = {
+    "num_tools_agreeing": "Cross-Tool Agreement (num_tools)",
+    "flagged_by_semgrep": "Flagged by Semgrep",
+    "flagged_by_sonar": "Flagged by SonarQube",
+    "cwe_historical_precision": "CWE Historical Precision (fold-safe)",
+}
+
+
 def plot_feature_importance():
-    features = [
-        ('Cross-Tool Agreement (num_tools)', 0.2301),
-        ('Flagged by Semgrep', 0.1173),
-        ('TF-IDF Keyword "use"', 0.0894),
-        ('Flagged by SonarQube', 0.0855),
-        ('TF-IDF Keyword "detected"', 0.0820),
-        ('CWE Historical Precision', 0.0583),
-        ('TF-IDF Keyword "instead"', 0.0493),
-        ('TF-IDF Keyword "java"', 0.0358),
-        ('CWE-330 Category', 0.0344),
-        ('TF-IDF Keyword "going"', 0.0283)
-    ]
-    df_feat = pd.DataFrame(features, columns=['Feature', 'Importance']).sort_values('Importance', ascending=True)
+    df_feat = pd.read_csv("results/feature_importance.csv").head(10).copy()
+    df_feat["display_name"] = df_feat["feature"].apply(
+        lambda f: FEATURE_DISPLAY_NAMES.get(f, f.replace("tfidf_", 'TF-IDF Keyword "') + '"' if f.startswith("tfidf_")
+                  else f.replace("cwe_", "CWE Category ") if f.startswith("cwe_")
+                  else f)
+    )
+    df_feat = df_feat.sort_values("importance", ascending=True)
 
     plt.figure(figsize=(10, 6))
-    bars = plt.barh(df_feat['Feature'], df_feat['Importance'] * 100, color='#2b5c8f')
-    plt.title('Top 10 Feature Importances in Hybrid ML Model (%)', fontsize=14, fontweight='bold', pad=15)
+    bars = plt.barh(df_feat['display_name'], df_feat['importance'] * 100, color='#2b5c8f')
+    plt.title('Top 10 Feature Importances in Hybrid ML Model (%) — Leak-Free', fontsize=13, fontweight='bold', pad=15)
     plt.xlabel('Importance Weight (%)', fontsize=12)
 
     for bar in bars:
         width = bar.get_width()
         plt.text(width + 0.3, bar.get_y() + bar.get_height()/2, f'{width:.1f}%', va='center', fontsize=10, fontweight='bold')
 
-    plt.xlim(0, 27)
+    plt.xlim(0, max(df_feat['importance'] * 100) + 5)
     plt.tight_layout()
     plt.savefig(f"{PLOTS_DIR}/03_feature_importance.png", dpi=300)
     plt.close()
@@ -113,8 +181,8 @@ def plot_cwe_precision():
     plt.title('Scanner Precision by Vulnerability Category (CWE)', fontsize=14, fontweight='bold', pad=15)
     plt.ylabel('Precision (%)', fontsize=12)
     plt.xlabel('CWE Category', fontsize=12)
-    plt.axhline(85, color='green', linestyle='--', label='Tier A (≥85%)')
-    plt.axhline(65, color='orange', linestyle='--', label='Tier B (≥65%)')
+    plt.axhline(85, color='green', linestyle='--', label='Tier A (>=85%)')
+    plt.axhline(65, color='orange', linestyle='--', label='Tier B (>=65%)')
     plt.ylim(0, 115)
 
     for bar in bars:
@@ -129,13 +197,26 @@ def plot_cwe_precision():
 
 
 def plot_priority_distribution():
-    tiers = ['P1 - Critical Risk', 'P2 - High Risk', 'P3 - Medium Risk', 'P4 - Low / Suppressed']
-    counts = [390, 403, 1046, 901]
+    df = pd.read_csv("results/ml_prioritized_findings.csv")
+    df["tier"] = df["ml_priority"].apply(lambda s: s.split(" - ")[0])
+
+    tier_order = ["P1", "P2", "P3", "P4"]
+    tier_labels = {
+        "P1": "P1 - Critical Risk",
+        "P2": "P2 - High Risk",
+        "P3": "P3 - Medium Risk",
+        "P4": "P4 - Low / Suppressed"
+    }
+    counts_series = df["tier"].value_counts().reindex(tier_order).fillna(0)
+
+    tiers = [tier_labels[t] for t in tier_order]
+    counts = counts_series.values
     colors = ['#d62728', '#ff7f0e', '#1f77b4', '#7f7f7f']
 
     plt.figure(figsize=(8, 6))
-    plt.pie(counts, labels=tiers, autopct='%1.1f%%', startangle=140, colors=colors, explode=(0.05, 0.05, 0, 0), textprops={'fontsize': 11, 'weight': 'bold'})
-    plt.title('ML Risk Triage Distribution (2,740 OWASP Benchmark Cases)', fontsize=13, fontweight='bold', pad=15)
+    plt.pie(counts, labels=tiers, autopct='%1.1f%%', startangle=140, colors=colors,
+            explode=(0.05, 0.05, 0, 0), textprops={'fontsize': 11, 'weight': 'bold'})
+    plt.title(f'ML Risk Triage Distribution ({int(sum(counts))} OWASP Benchmark Cases) — Leak-Free', fontsize=13, fontweight='bold', pad=15)
     plt.tight_layout()
     plt.savefig(f"{PLOTS_DIR}/05_ml_priority_distribution.png", dpi=300)
     plt.close()
@@ -143,9 +224,12 @@ def plot_priority_distribution():
 
 
 if __name__ == '__main__':
-    plot_performance_comparison()
+    total_pos, total_neg = load_ground_truth_counts(GROUND_TRUTH_FILE)
+    print(f"Ground truth: {total_pos} real vulnerabilities, {total_neg} safe test cases\n")
+
+    plot_performance_comparison(total_pos)
     plot_confusion_matrices()
     plot_feature_importance()
     plot_cwe_precision()
     plot_priority_distribution()
-    print("All plots successfully generated!")
+    print("\nAll plots successfully generated from live result files (no hardcoded numbers).")

@@ -2,10 +2,10 @@ import requests
 import re
 import csv
 import time
-
+import os
 # SonarQube connection details
 SONAR_URL = "http://localhost:9000"
-SONAR_TOKEN = "squ_3d639feb3feb8a1871c4b6b5b89b5e10241acdd2"
+SONAR_TOKEN = os.environ.get("SONAR_TOKEN")
 PROJECT_KEY = "owasp-benchmark"
 
 # Where we'll save the cleaned-up, filtered results

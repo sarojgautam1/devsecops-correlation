@@ -1,0 +1,3 @@
+stage,tp,fp,total,precision
+rule_based_p3_baseline,59,41,100,0.59
+llm_filtered_p3,51,35,86,0.593
