@@ -1,0 +1,4 @@
+approach,precision,findings_kept,sample_size,real_vulns_discarded,total_real_vulns,recall
+rule_based_baseline,0.5604,-,91,-,-,-
+anchored_prompt,0.5641,78,91,7,51,0.8627
+blind_prompt,0.5769,78,91,6,51,0.8824

@@ -1,6 +1,74 @@
 // app.js - DevSecOps Correlation & ML Prioritizer Dashboard Logic
 
 // ==========================================================================
+// 0. REAL, VERIFIED RESULT DATA (embedded so summary panels are always
+//    correct even if the live CSVs aren't served from the expected path)
+//    Source: results/feature_importance.csv, cwe_precision_table.csv,
+//    ml_evaluation_summary.csv, priority_tier_validation.csv,
+//    ml_tier_validation.csv, p3_three_way_comparison.csv
+// ==========================================================================
+const FEATURE_IMPORTANCE = [
+  { feature: 'flagged_by_semgrep', importance: 0.2441 },
+  { feature: 'num_tools_agreeing', importance: 0.1754 },
+  { feature: 'tfidf: "use"', importance: 0.0965 },
+  { feature: 'tfidf: "detected"', importance: 0.0807 },
+  { feature: 'flagged_by_sonar', importance: 0.0630 },
+  { feature: 'cwe_historical_precision (fold-safe)', importance: 0.0395 },
+  { feature: 'tfidf: "instead"', importance: 0.0336 },
+  { feature: 'CWE-330 category', importance: 0.0322 },
+  { feature: 'tfidf: "java"', importance: 0.0277 },
+  { feature: 'tfidf: "going"', importance: 0.0203 }
+];
+
+const CWE_NAMES = {
+  '89': 'SQL Injection', '330': 'Weak PRNG', '79': 'Cross-Site Scripting',
+  '327': 'Broken Crypto Algorithm', '22': 'Path Traversal', '78': 'Command Injection',
+  '328': 'Weak Hash', '501': 'Trust Boundary Violation', '90': 'LDAP Injection',
+  '614': 'Sensitive Cookie (No Secure Flag)', '643': 'XPath Injection'
+};
+
+const CWE_PRECISION = [
+  { cwe: '89', tp: 416, fp: 308, total: 724, precision: 0.5746 },
+  { cwe: '330', tp: 427, fp: 0, total: 427, precision: 1.0 },
+  { cwe: '79', tp: 202, fp: 108, total: 310, precision: 0.6516 },
+  { cwe: '327', tp: 256, fp: 27, total: 283, precision: 0.9046 },
+  { cwe: '22', tp: 120, fp: 106, total: 226, precision: 0.531 },
+  { cwe: '78', tp: 117, fp: 109, total: 226, precision: 0.5177 },
+  { cwe: '328', tp: 174, fp: 0, total: 174, precision: 1.0 },
+  { cwe: '501', tp: 68, fp: 26, total: 94, precision: 0.7234 },
+  { cwe: '90', tp: 26, fp: 28, total: 54, precision: 0.4815 },
+  { cwe: '614', tp: 36, fp: 0, total: 36, precision: 1.0 },
+  { cwe: '643', tp: 14, fp: 13, total: 27, precision: 0.5185 }
+].sort((a, b) => b.precision - a.precision);
+
+const MODEL_SUMMARY = [
+  { model: 'Semgrep Alone', precision: 0.6945, recall: 0.8996, f1: 0.7839, auc: null },
+  { model: 'SonarQube Alone', precision: 0.7794, recall: 0.4120, f1: 0.5391, auc: null },
+  { model: 'Hybrid ML (5-Fold CV)', precision: 0.7069, recall: 0.8551, f1: 0.7731, auc: 0.8406 },
+  { model: 'Hybrid ML (P1+P2 Filtered)', precision: 0.8670, recall: 0.4608, f1: 0.6018, auc: 0.8406 }
+];
+
+const HEURISTIC_TIER_VALIDATION = [
+  { tier: 'P1', tp: 294, fp: 0, total: 294, precision: 1.0 },
+  { tier: 'P2', tp: 330, fp: 141, total: 471, precision: 0.7006 },
+  { tier: 'P3', tp: 341, fp: 176, total: 517, precision: 0.6596 },
+  { tier: 'P4', tp: 528, fp: 366, total: 894, precision: 0.5906 }
+];
+
+const ML_TIER_VALIDATION = [
+  { tier: 'P1', tp: 473, fp: 0, total: 473, precision: 1.0 },
+  { tier: 'P2', tp: 179, fp: 100, total: 279, precision: 0.6416 },
+  { tier: 'P3', tp: 607, fp: 440, total: 1047, precision: 0.5798 },
+  { tier: 'P4', tp: 156, fp: 785, total: 941, precision: 0.1658 }
+];
+
+const LLM_P3_COMPARISON = [
+  { approach: 'Rule-Based Baseline (no LLM)', precision: 0.5604, kept: 91, sample: 91, discarded: '-', totalReal: '-', recall: null },
+  { approach: 'Anchored Prompt (told scanner claim)', precision: 0.5641, kept: 78, sample: 91, discarded: 7, totalReal: 51, recall: 0.8627 },
+  { approach: 'Blind Prompt (raw code only)', precision: 0.5769, kept: 78, sample: 91, discarded: 6, totalReal: 51, recall: 0.8824 }
+];
+
+// ==========================================================================
 // 1. STATE MANAGEMENT
 // ==========================================================================
 let allFindings = [];
@@ -8,6 +76,7 @@ let filteredFindings = [];
 let currentPage = 1;
 const rowsPerPage = 15;
 let currentSort = { key: 'MLScore', asc: false };
+let liveDataLoaded = false; // tracks whether the real per-finding CSV loaded successfully
 
 // ==========================================================================
 // 2. CSV PARSER (Robust against quoted strings & commas inside fields)
@@ -68,19 +137,31 @@ async function loadRealCSVData() {
   if (statusBadge) statusBadge.innerHTML = `<span class="status-dot"></span><span>Loading dataset...</span>`;
 
   try {
-    // Attempt 1: Fetch ml_prioritized_findings.csv
-    let resp = await fetch('../results/ml_prioritized_findings.csv');
-    if (!resp.ok) {
-      resp = await fetch('/results/ml_prioritized_findings.csv');
+    // Prefer the location-enriched file (has real file/line, recovered by
+    // joining against correlated_findings.csv). Fall back to the plain file
+    // if the enrichment step hasn't been run in this environment.
+    const candidates = [
+      '../results/ml_prioritized_findings_with_location.csv',
+      '/results/ml_prioritized_findings_with_location.csv',
+      '../results/ml_prioritized_findings.csv',
+      '/results/ml_prioritized_findings.csv'
+    ];
+
+    let resp = null;
+    for (const url of candidates) {
+      try {
+        const r = await fetch(url);
+        if (r.ok) { resp = r; break; }
+      } catch (e) { /* try next candidate */ }
     }
-    
-    if (resp.ok) {
+
+    if (resp) {
       const text = await resp.text();
       const rows = parseCSV(text);
-      
+
       if (rows.length > 1) {
         const header = rows[0].map(h => h.toLowerCase().replace(/[^a-z0-9_]/g, ''));
-        
+
         const idxTest = header.indexOf('test_name');
         const idxVuln = header.indexOf('real_vulnerability');
         const idxCwe = header.indexOf('cwe');
@@ -89,6 +170,8 @@ async function loadRealCSVData() {
         const idxMsg = header.indexOf('message');
         const idxScore = header.indexOf('ml_risk_score');
         const idxPriority = header.indexOf('ml_priority');
+        const idxFile = header.indexOf('file');   // only present in the location-enriched file
+        const idxLine = header.indexOf('line');
 
         const parsed = [];
         for (let i = 1; i < rows.length; i++) {
@@ -96,11 +179,11 @@ async function loadRealCSVData() {
           if (row.length < 4) continue;
 
           const testName = row[idxTest] || `BenchmarkTest${String(i).padStart(5, '0')}`;
-          const cwe = row[idxCwe] || 'CWE-89';
+          const cwe = row[idxCwe] || 'unknown';
           const semgrep = parseInt(row[idxSemgrep]) || 0;
           const sonar = parseInt(row[idxSonar]) || 0;
-          
-          let tools = 'Dependency-Check';
+
+          let tools = 'None (not flagged by any tool)';
           if (semgrep === 1 && sonar === 1) tools = 'SonarQube, Semgrep';
           else if (sonar === 1) tools = 'SonarQube';
           else if (semgrep === 1) tools = 'Semgrep';
@@ -114,7 +197,11 @@ async function loadRealCSVData() {
 
           const mlScore = parseFloat(row[idxScore]) || 0.0;
           const isReal = row[idxVuln] === '1' ? 'True' : 'False';
-          const msg = row[idxMsg] ? row[idxMsg] : `Security finding for ${cwe} in ${testName}`;
+          const msg = row[idxMsg] ? row[idxMsg] : `No message available (test case not flagged by any tool)`;
+
+          // Real file/line when the enriched column exists; otherwise honestly show N/A
+          const realFile = idxFile !== -1 && row[idxFile] ? row[idxFile] : null;
+          const realLine = idxLine !== -1 && row[idxLine] ? row[idxLine] : null;
 
           const severity = priority === 'P1' ? 'CRITICAL' : priority === 'P2' ? 'HIGH' : priority === 'P3' ? 'MEDIUM' : 'LOW';
 
@@ -122,8 +209,8 @@ async function loadRealCSVData() {
             ID: `F-${String(i).padStart(4, '0')}`,
             Tools: tools,
             Test: testName,
-            File: `${testName}.java`,
-            Line: 35 + (i * 7) % 95,
+            File: realFile || 'N/A (not correlated to a specific source file)',
+            Line: realLine || 'N/A',
             CWE: cwe,
             Severity: severity,
             Message: msg,
@@ -136,9 +223,10 @@ async function loadRealCSVData() {
         if (parsed.length > 0) {
           allFindings = parsed;
           filteredFindings = [...allFindings];
+          liveDataLoaded = true;
           sortFindings();
           renderAll();
-          if (statusBadge) statusBadge.innerHTML = `<span class="status-dot"></span><span>OWASP Benchmark (2,740 Loaded)</span>`;
+          if (statusBadge) statusBadge.innerHTML = `<span class="status-dot"></span><span>OWASP Benchmark (${parsed.length.toLocaleString()} Loaded)</span>`;
           return;
         }
       }
@@ -147,33 +235,42 @@ async function loadRealCSVData() {
     console.warn('Failed to load live CSV, loading demo data fallback', err);
   }
 
-  // Fallback if fetch fails
+  // Fallback if fetch fails -- table rows are illustrative only; all summary
+  // panels (KPIs, feature importance, CWE precision, tier validation, LLM
+  // comparison) still use the real embedded numbers above regardless.
+  liveDataLoaded = false;
   loadFallbackData();
-  if (statusBadge) statusBadge.innerHTML = `<span class="status-dot"></span><span>Demo Dataset</span>`;
+  if (statusBadge) statusBadge.innerHTML = `<span class="status-dot"></span><span>Demo Table Rows (summary panels use real results)</span>`;
 }
 
 function loadFallbackData() {
-  const CWE_LIST = ['CWE-89', 'CWE-79', 'CWE-78', 'CWE-601', 'CWE-327', 'CWE-22', 'CWE-502'];
-  const TOOLS_LIST = ['SonarQube, Semgrep', 'SonarQube', 'Semgrep', 'Dependency-Check'];
+  // NOTE: this generates illustrative table rows ONLY, used when the live
+  // ml_prioritized_findings_with_location.csv can't be fetched (e.g. this
+  // dashboard opened via file:// instead of a local server). Every summary
+  // panel (KPIs, feature importance, CWE precision, tier validation, LLM
+  // comparison) uses the real embedded constants regardless and is NOT
+  // affected by this fallback -- only the browsable findings table is.
+  const CWE_LIST = Object.keys(CWE_NAMES).map(c => `CWE-${c}`);
+  const TOOLS_LIST = ['SonarQube, Semgrep', 'SonarQube', 'Semgrep', 'None (not flagged by any tool)'];
   const fallback = [];
 
-  for (let i = 1; i <= 2190; i++) {
+  for (let i = 1; i <= 2740; i++) {
     const cwe = CWE_LIST[i % CWE_LIST.length];
     const tools = TOOLS_LIST[i % TOOLS_LIST.length];
     const isMulti = tools.includes(',');
     const mlScore = isMulti ? +(0.85 + (i % 15) * 0.01).toFixed(2) : +(0.20 + (i % 65) * 0.01).toFixed(2);
-    const priority = mlScore >= 0.85 ? 'P1' : mlScore >= 0.70 ? 'P2' : mlScore >= 0.45 ? 'P3' : 'P4';
+    const priority = mlScore >= 0.85 ? 'P1' : mlScore >= 0.65 ? 'P2' : mlScore >= 0.45 ? 'P3' : 'P4';
     const groundTruth = (priority === 'P1' || priority === 'P2') ? 'True' : 'False';
 
     fallback.push({
       ID: `F-${String(i).padStart(4, '0')}`,
       Tools: tools,
       Test: `BenchmarkTest${String(i).padStart(5, '0')}`,
-      File: `BenchmarkTest${String(i).padStart(5, '0')}.java`,
+      File: `[DEMO ROW -- live CSV not found] BenchmarkTest${String(i).padStart(5, '0')}.java`,
       Line: 15 + (i * 7) % 120,
       CWE: cwe,
       Severity: priority === 'P1' ? 'CRITICAL' : priority === 'P2' ? 'HIGH' : priority === 'P3' ? 'MEDIUM' : 'LOW',
-      Message: `Automated correlated security scan finding for ${cwe} in OWASP benchmark pipeline`,
+      Message: `[Illustrative demo row -- serve this dashboard alongside results/ for live data] ${cwe} finding`,
       Priority: priority,
       MLScore: mlScore,
       GroundTruth: groundTruth
@@ -353,17 +450,135 @@ function renderAll() {
   renderTable();
   renderCWEHeatmap();
   renderCWEBars();
+  renderFeatureImportance();
+  renderTierComparison();
+  renderModelSummary();
+  renderLLMComparison();
 }
 
 function renderKPIs() {
-  const total = filteredFindings.length;
-  document.getElementById('kpiTotal').textContent = total.toLocaleString();
-  document.getElementById('tableCountBadge').textContent = total.toLocaleString();
+  // The Total Findings / P1 Precision / ROC-AUC / Workload Reduction KPI
+  // cards report FIXED, real, verified pipeline-level numbers (from the
+  // embedded result constants) -- they intentionally do NOT change when the
+  // user applies table filters, since they describe the whole evaluation,
+  // not the currently filtered view. The table row count badge DOES update
+  // live with filters, since that's genuinely about the visible rows.
+  document.getElementById('tableCountBadge').textContent = filteredFindings.length.toLocaleString();
+}
 
-  const p1Items = filteredFindings.filter(f => f.Priority === 'P1');
-  const p1True = p1Items.filter(f => f.GroundTruth === 'True').length;
-  const precision = p1Items.length > 0 ? ((p1True / p1Items.length) * 100).toFixed(1) + '%' : '100.0%';
-  document.getElementById('kpiPrecision').textContent = precision;
+function renderFeatureImportance() {
+  const container = document.getElementById('featureBarList');
+  if (!container) return;
+
+  const maxImportance = FEATURE_IMPORTANCE[0].importance;
+  let html = '';
+  FEATURE_IMPORTANCE.forEach(f => {
+    const pct = (f.importance * 100).toFixed(2);
+    const barWidth = (f.importance / maxImportance * 100).toFixed(1);
+    html += `
+      <div class="feature-item">
+        <div class="feature-info">
+          <span>${f.feature}</span>
+          <span class="feature-percent">${pct}%</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width: ${barWidth}%;"></div></div>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function renderTierComparison() {
+  const container = document.getElementById('tierComparisonTable');
+  if (!container) return;
+
+  let html = `<table class="heatmap-table"><thead><tr>
+      <th style="text-align:left;">Tier</th>
+      <th>Heuristic Precision</th>
+      <th>ML Precision</th>
+      <th>Change</th>
+    </tr></thead><tbody>`;
+
+  HEURISTIC_TIER_VALIDATION.forEach((h, i) => {
+    const m = ML_TIER_VALIDATION[i];
+    const diff = (m.precision - h.precision) * 100;
+    const diffStr = (diff >= 0 ? '+' : '') + diff.toFixed(1) + ' pp';
+
+    // P4 is a special case: a LOWER real-vulnerability rate here is the
+    // desired, positive outcome -- it means the ML model concentrated false
+    // positives more effectively into the "safe to deprioritize" tier.
+    // For P1-P3, higher precision is straightforwardly better.
+    let diffColor, diffNote;
+    if (h.tier === 'P4') {
+      diffColor = 'var(--sea-primary)';
+      diffNote = ' (desired: purer noise bucket)';
+    } else {
+      diffColor = diff > 2 ? 'var(--sea-primary)' : diff < -2 ? '#C0392B' : 'var(--text-muted)';
+      diffNote = '';
+    }
+
+    html += `<tr>
+      <td style="font-weight:700; text-align:left;">${h.tier}</td>
+      <td>${(h.precision * 100).toFixed(1)}% <span style="color:var(--text-muted); font-size:0.75rem;">(n=${h.total})</span></td>
+      <td>${(m.precision * 100).toFixed(1)}% <span style="color:var(--text-muted); font-size:0.75rem;">(n=${m.total})</span></td>
+      <td style="color:${diffColor}; font-weight:600; font-size:0.85rem;">${diffStr}${diffNote}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+}
+
+function renderModelSummary() {
+  const container = document.getElementById('modelSummaryTable');
+  if (!container) return;
+
+  let html = `<table class="heatmap-table"><thead><tr>
+      <th style="text-align:left;">Model / Tool</th>
+      <th>Precision</th>
+      <th>Recall</th>
+      <th>F1</th>
+      <th>ROC-AUC</th>
+    </tr></thead><tbody>`;
+
+  MODEL_SUMMARY.forEach(m => {
+    html += `<tr>
+      <td style="text-align:left; font-weight:600;">${m.model}</td>
+      <td>${(m.precision * 100).toFixed(2)}%</td>
+      <td>${(m.recall * 100).toFixed(2)}%</td>
+      <td>${m.f1.toFixed(4)}</td>
+      <td>${m.auc !== null ? m.auc.toFixed(4) : 'N/A'}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
+}
+
+function renderLLMComparison() {
+  const container = document.getElementById('llmComparisonTable');
+  if (!container) return;
+
+  let html = `<table class="heatmap-table"><thead><tr>
+      <th style="text-align:left;">Approach</th>
+      <th>Precision</th>
+      <th>Kept</th>
+      <th>Real Vulns Discarded</th>
+      <th>Recall</th>
+    </tr></thead><tbody>`;
+
+  LLM_P3_COMPARISON.forEach(r => {
+    html += `<tr>
+      <td style="text-align:left; font-weight:600;">${r.approach}</td>
+      <td>${(r.precision * 100).toFixed(1)}%</td>
+      <td>${r.kept}/${r.sample}</td>
+      <td>${r.discarded === '-' ? '&mdash;' : r.discarded + '/' + r.totalReal}</td>
+      <td>${r.recall !== null ? (r.recall * 100).toFixed(1) + '%' : '&mdash;'}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  container.innerHTML = html;
 }
 
 function renderDonutChart() {
@@ -430,7 +645,7 @@ function renderTable() {
       <td class="cwe-cell">${item.CWE}</td>
       <td><strong>${item.Tools}</strong></td>
       <td><code>${item.Test}</code></td>
-      <td>${item.File}:${item.Line}</td>
+      <td>${item.Line === 'N/A' ? item.File : item.File + ':' + item.Line}</td>
       <td><span style="font-size:0.75rem; font-weight:600;">${item.Severity}</span></td>
       <td>${item.Message}</td>
     `;
@@ -503,25 +718,21 @@ window.filterByCWE = function(cwe) {
 
 function renderCWEBars() {
   const container = document.getElementById('cwePrecisionBars');
-  const rates = [
-    { cwe: 'CWE-89 (SQL Injection)', rate: 96.4 },
-    { cwe: 'CWE-78 (Command Injection)', rate: 94.2 },
-    { cwe: 'CWE-22 (Path Traversal)', rate: 88.7 },
-    { cwe: 'CWE-79 (XSS Cross-Site)', rate: 82.5 },
-    { cwe: 'CWE-601 (Open Redirect)', rate: 76.0 },
-    { cwe: 'CWE-327 (Crypto Algo)', rate: 68.3 }
-  ];
+  if (!container) return;
 
   let html = `<div style="display:flex; flex-direction:column; gap:0.75rem;">`;
-  rates.forEach(item => {
+  CWE_PRECISION.forEach(item => {
+    const rate = (item.precision * 100).toFixed(1);
+    const name = CWE_NAMES[item.cwe] || '';
+    const barColor = item.precision >= 0.85 ? 'var(--sea-primary)' : item.precision >= 0.65 ? '#D35400' : '#C0392B';
     html += `
       <div>
         <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.2rem;">
-          <span>${item.cwe}</span>
-          <span style="font-family:var(--font-mono); font-weight:600; color:var(--sea-primary);">${item.rate}% Precision</span>
+          <span>CWE-${item.cwe} (${name})</span>
+          <span style="font-family:var(--font-mono); font-weight:600; color:${barColor};">${rate}% (n=${item.total})</span>
         </div>
         <div style="height:8px; background:var(--bg-subtle); border-radius:4px; overflow:hidden;">
-          <div style="height:100%; width:${item.rate}%; background:var(--sea-primary); border-radius:4px;"></div>
+          <div style="height:100%; width:${rate}%; background:${barColor}; border-radius:4px;"></div>
         </div>
       </div>
     `;
@@ -534,26 +745,11 @@ function renderCWEBars() {
 // 7. SIMULATOR & MODAL
 // ==========================================================================
 function initSimulator() {
-  const slider = document.getElementById('simSlider');
-  const simVal = document.getElementById('simVal');
-  const simAlerts = document.getElementById('simAlerts');
-  const simPrecision = document.getElementById('simPrecision');
-  const simHours = document.getElementById('simHours');
-
-  if (!slider) return;
-  slider.addEventListener('input', (e) => {
-    const val = parseFloat(e.target.value);
-    simVal.textContent = val.toFixed(2);
-
-    const totalCount = allFindings.length || 2190;
-    const highAlerts = Math.round(totalCount * (1 - (val - 0.5) * 1.4));
-    const precision = Math.min(99.8, 88 + (val - 0.5) * 24).toFixed(1);
-    const hoursSaved = (45.0 * (val / 0.75)).toFixed(1);
-
-    simAlerts.textContent = `${highAlerts} (${((highAlerts / totalCount) * 100).toFixed(1)}%)`;
-    simPrecision.textContent = `${precision}%`;
-    simHours.textContent = `${hoursSaved} hrs`;
-  });
+  // Removed: the previous version computed precision/hours-saved from an
+  // arbitrary formula with no connection to real data. The Threshold
+  // Simulator card was replaced with the real Tier Precision comparison
+  // (see renderTierComparison) and Model Comparison Summary
+  // (see renderModelSummary), both driven by verified result files.
 }
 
 function initModal() {

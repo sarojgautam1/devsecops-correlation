@@ -3,6 +3,8 @@ import re
 import csv
 import time
 import os
+from dotenv import load_dotenv
+load_dotenv()
 # SonarQube connection details
 SONAR_URL = "http://localhost:9000"
 SONAR_TOKEN = os.environ.get("SONAR_TOKEN")
