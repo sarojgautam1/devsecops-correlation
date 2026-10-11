@@ -1,0 +1,114 @@
+name: DevSecOps Correlation Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  scan-and-correlate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Python dependencies
+        run: |
+          pip install pandas requests
+          pip install semgrep
+
+      - name: Clone OWASP Benchmark
+        run: |
+          mkdir -p data
+          git clone --depth 1 https://github.com/OWASP-Benchmark/BenchmarkJava.git data/benchmark
+
+      - name: Run Semgrep scan
+        run: |
+          mkdir -p data/raw_sarif
+          semgrep \
+            --config=auto \
+            --sarif \
+            -o data/raw_sarif/semgrep_output.sarif \
+            data/benchmark/src/ || true
+
+      - name: Parse Semgrep results
+        run: |
+          python src/parsers/semgrep_parser.py
+
+      - name: Run OWASP Dependency-Check
+        uses: dependency-check/Dependency-Check_Action@main
+        with:
+          project: 'owasp-benchmark'
+          path: 'data/benchmark'
+          format: 'SARIF'
+          out: 'data/raw_sarif/depcheck_output'
+        env:
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+
+      - name: Parse Dependency-Check results
+        run: |
+          python src/parsers/depcheck_summary.py
+
+      # SonarCloud can be enabled later after configuring SONAR_TOKEN.
+      # - name: SonarCloud Scan
+      #   uses: SonarSource/sonarcloud-github-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Merge findings from all tools
+        run: |
+          python src/correlation/merge_findings.py
+
+      - name: Correlate findings across tools
+        run: |
+          python src/correlation/correlate_findings.py
+
+      - name: Apply confidence tiers
+        run: |
+          python src/evaluation/apply_confidence_tiers.py
+
+      - name: Write summary to GitHub Actions
+        run: |
+          echo "## DevSecOps Pipeline Results" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+
+          python3 - <<'PY'
+          import csv
+          from collections import Counter
+
+          with open("results/prioritized_findings.csv", newline="") as f:
+              rows = list(csv.DictReader(f))
+
+          counts = Counter(
+              r["priority"].split(" - ")[0]
+              for r in rows
+          )
+
+          print("| Priority | Count |")
+          print("|---|---|")
+
+          for priority in sorted(counts):
+              print(f"| {priority} | {counts[priority]} |")
+          PY
+
+      - name: Upload results as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: devsecops-prioritized-findings
+          path: |
+            results/correlated_findings.csv
+            results/prioritized_findings.csv
+          retention-days: 30
