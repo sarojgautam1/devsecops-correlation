@@ -1,0 +1,4 @@
+file,rows_in_file,unusable(error/skipped/unknown),n_scored,real_vulns,baseline_precision_%,kept,filtered_precision_%,precision_gain_pp,real_discarded,recall_%,f1_filtered
+p3_llm_verified_v2.csv,400,0,400,226,56.5,358,57.0,0.5,22,90.3,0.699
+p3_llm_verified_anchored_openai_gpt-4.1-mini.csv,400,0,400,226,56.5,320,58.1,1.6,40,82.3,0.681
+p3_llm_verified_blind_openai_gpt-4.1-mini.csv,400,0,400,226,56.5,350,57.7,1.2,24,89.4,0.701
